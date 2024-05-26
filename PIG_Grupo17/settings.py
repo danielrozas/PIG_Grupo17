@@ -75,14 +75,14 @@ WSGI_APPLICATION = 'PIG_Grupo17.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "pig_grupo17",
-        "USER": "postgres",
-        "PASSWORD": "accos50",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
-    }
+ "default":{
+    "ENGINE": "django.db.backends.postgresql",
+    "NAME": "pig_grupo17",
+    "USER": "postgres",
+    "PASSWORD": "accos50",
+    "HOST": "127.0.0.1",
+    "PORT": "5432",
+ }
 }
 
 

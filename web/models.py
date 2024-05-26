@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Administradores(models.Model):
     idAdministrador = models.AutoField(primary_key=True) # Esto equivale a INTEGER UNSIGNED NOT NULL
     NombreAdministrador = models.CharField(max_length=60, null = False)
@@ -25,10 +24,18 @@ class Directores(models.Model):
     def __str__(self):
         return self.NombreDirector
 
+class Generos(models.Model):
+    idGenero = models.AutoField(primary_key=True) # Esto equivale a INTEGER UNSIGNED NOT NULL
+    NombreGenero = models.CharField(max_length=60, null = False)
+
+    def __str__(self):
+        return self.NombreGenero
+
 class Peliculas(models.Model):
     idPelicula = models.AutoField(primary_key=True) # Esto equivale a INTEGER UNSIGNED NOT NULL
     NombrePelicula = models.CharField(max_length=128, null = False) 
     Director_id = models.ForeignKey(Directores, on_delete=models.CASCADE)
+    Genero_id = models.ForeignKey(Generos, on_delete=models.CASCADE)
     FechaEstreno = models.DateTimeField(blank=True, null=True)
     URLCartel = models.CharField(max_length=150, null = True)
 
@@ -43,5 +50,4 @@ class ActoresenPeliculas(models.Model):
 
     def __str__(self):
         return f"{self.Actor_id} {self.Pelicula_id}"
- 
-        return f"{self.Actor_id} {self.Pelicula_id}"
+
