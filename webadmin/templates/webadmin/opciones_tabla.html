@@ -1,0 +1,19 @@
+{% extends 'webadmin/base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Página de Administracion de Biblioteca Digital de Películas
+{% endblock titulo %}
+
+{% block content %}
+
+{% include './includes/header.html' %}
+
+
+<a role="button1" href="#" class="button">Alta</a>
+<a role="button2" href="#" class="button">Modificación</a>
+<a role="button3" href="#" class="button">Baja</a>
+<a role="button4" href="{% url 'webadmin_app:index' %}" class="button">Volver</a>
+
+{% endblock content %}
