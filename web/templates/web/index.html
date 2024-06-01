@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula Virtual 2.0</title>
+    <title> {{ nombre_sistema }} </title>
 </head>
 <body>
-    <h1>Aula Virtual 2.0</h1>
+    <h1> {{ nombre_empresa }} </h1>
     <nav>
         <ul>
             <li><a href="{% url 'index' %}">Index</a></li>
-            <li><a href="{% url 'lista_alumnos' %}">Listado de Alumnos</a></li>
+
          </ul>
 
     </nav>
-    <p>Bienvenido {{ nombre }}</p>
-
+  
     <footer>
         <p>{{fecha_hora}}</p>
     </footer>
