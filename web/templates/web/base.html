@@ -1,0 +1,59 @@
+<!-- web/templates/web/base.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CineMania{% endblock %}</title>
+	<link rel="shortcut icon" href="{% static 'web/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'web/css/base.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+	{% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar  -->
+    <header>
+        <a href="#home" class="logo">
+            <img src="{% static 'web/img/logo-Cinemania.png' %}" alt="Logo CineMania" class="logo-img">CineMania
+        </a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <!-- menu  -->
+        <ul class="navbar">
+            <li><a href="#home" class="home-active">Inicio</a></li>
+            <li><a href="#movies">Peliculas</a></li>
+            <li><a href="#coming">Estrenos</a></li>
+        </ul>
+        <a href="#" class="btn">Login</a>
+    </header>
+
+    <!-- Contenido de la página -->
+    {% block content %}{% endblock %}
+
+    <!-- footer  -->
+    <section class="footer">
+		<a href="" class="logo">
+		  <img src="{% static 'web/img/logo-Cinemania.png' %}" alt="Logo CineMania" class="logo-img">CineMania
+		</a>
+        <div class="social">
+            <a href=""><i class='bx bxl-facebook'></i></a>
+            <a href=""><i class='bx bxl-twitter'></i></a>
+            <a href=""><i class='bx bxl-instagram'></i></a>
+        </div>
+    </section>
+
+    <!-- Copyright  -->
+    <div class="copyright">
+        <p>&#169; Codo a codo 2024 - Todos los derechos reservados</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="{% static 'web/js/web.js' %}"></script>
+	{% block extra_js %}{% endblock %}
+</body>
+</html>
