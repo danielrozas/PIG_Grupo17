@@ -38,7 +38,7 @@ class Peliculas(models.Model):
                             MaxValueValidator(300)])
     PrecioAlquiler = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="PrecioAlquiler")
     Disponibilidad = models.BooleanField(verbose_name="Disponibilidad")
-    URLCartel = models.CharField(max_length=150, verbose_name="URLCartel")
+    URLCartel = models.ImageField(upload_to='carteles/', verbose_name="URLCartel")
 
 class Alquiler(models.Model):
     Pelicula_id = models.ForeignKey(Peliculas, on_delete=models.CASCADE)
