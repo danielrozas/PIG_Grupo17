@@ -18,16 +18,16 @@
 <body>
     <!-- Navbar  -->
     <header>
-        <a href="#home" class="logo">
+        <a href="{% url 'index' %}" class="logo">
             <img src="{% static 'web/img/logo-Cinemania.png' %}" alt="Logo CineMania" class="logo-img">CineMania
         </a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <!-- menu  -->
         <ul class="navbar">
-            <li><a href="#home" class="home-active">Inicio</a></li>
-            <li><a href="#movies">Peliculas</a></li>
-            <li><a href="#coming">Estrenos</a></li>
+            <li><a href="{% url 'index' %}#home" class="home-active">Inicio</a></li>
+            <li><a href="{% url 'index' %}#movies">Peliculas</a></li>
+            <li><a href="{% url 'index' %}#coming">Estrenos</a></li>
         </ul>
         <a href="#" class="btn">Login</a>
     </header>
