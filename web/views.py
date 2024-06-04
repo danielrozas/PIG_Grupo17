@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import Http404
+from django.contrib import messages
 from .models import Peliculas
 from .forms import PeliculaForm
 
@@ -20,3 +22,19 @@ def agregar_pelicula(request):
         form = PeliculaForm()
     
     return render(request, 'web/agregar_pelicula.html', {'form': form})
+    
+
+def eliminar_pelicula(request, pelicula_id):
+    try:
+        pelicula = Peliculas.objects.get(id=pelicula_id)
+    except Peliculas.DoesNotExist:
+        raise Http404("La película que intentas eliminar no existe.")
+    if request.method == 'POST':
+        pelicula.delete()
+        messages.success(request, 'La película se eliminó exitosamente.')
+        return redirect('lista_peliculas')
+    return render(request, 'web/eliminar_pelicula.html', {'pelicula': pelicula})
+    
+def lista_peliculas_admin(request):
+    peliculas = Peliculas.objects.all()
+    return render(request, 'web/lista_peliculas.html', {'peliculas': peliculas})
