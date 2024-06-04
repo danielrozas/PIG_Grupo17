@@ -1,0 +1,18 @@
+{% extends "web/base.html" %}
+{% load static %}
+
+{% block titulo %}Agregar Pelicula{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/agregar_pelicula.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1>Agregar Película</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Agregar</button>
+        </form>
+{% endblock %}
