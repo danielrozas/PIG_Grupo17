@@ -1,4 +1,4 @@
-{% extends "web/base.html" %}
+{% extends "web/base_admin.html" %}
 {% load static %}
 
 {% block titulo %}Agregar Pelicula{% endblock %}
@@ -8,11 +8,12 @@
 {% endblock %}
 
 {% block content %}
-
-    <h1>Agregar Película</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Agregar</button>
-        </form>
+	<div class="centered">
+		<h1 class="heading">Agregar Película</h1>
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" class="btn">Agregar</button>
+		</form>
+	</div>
 {% endblock %}

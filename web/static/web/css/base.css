@@ -18,6 +18,9 @@
 }
 
 body {
+	display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background: var(--text-color);
     color: var(--bg-color);
 }
@@ -46,6 +49,11 @@ header.shadow .navbar a {
 
 header.shadow .logo {
     color: var(--text-color);
+}
+
+main {
+	flex: 1;
+    padding-top: 80px;
 }
 
 .logo {
@@ -117,6 +125,11 @@ header.shadow .logo {
     background: #fa1216;
 }
 
+.footer-container {
+    width: 100%;
+    margin-top: auto;
+}
+
 .footer {
     max-width: 968px;
     margin-left: auto;
@@ -162,10 +175,6 @@ header.shadow .logo {
 @media (max-width: 991px) {
     header {
         padding: 18px 4%;
-    }
-
-    section {
-        padding: 50px 4%;
     }
 
     .home-text {
@@ -231,16 +240,9 @@ header.shadow .logo {
     .btn {
         padding: 0.6rem 1.2rem;
     }
-
-    .movies-container {
-        grid-template-columns: repeat(auto-fit, minmax(160px, auto));
-    }
 }
 
 @media (max-width: 472px) {
-    .newsletter form .email {
-        width: auto;
-    }
 
     .footer {
         flex-direction: column;
@@ -261,16 +263,9 @@ header.shadow .logo {
         font-size: 1.7rem;
     }
 
-    .play {
-        right: 2rem;
-        bottom: 8%;
-    }
-
-    .play .bx {
+    .bx {
         padding: 7px;
     }
 
-    .movies-container {
-        grid-template-columns: repeat(auto-fit, minmax(140px, auto));
-    }
+
 }

@@ -99,7 +99,6 @@ section {
     font-size: 14px;
 }
 
-
 /* coming container  */
 .coming-container {
     display: grid;
@@ -165,3 +164,31 @@ section {
     cursor: pointer;
 }
 
+/* responsive  */
+@media (max-width: 991px) {
+
+    section {
+        padding: 50px 4%;
+    }
+
+}
+
+@media (max-width: 774px){
+    .movies-container{
+        grid-template-columns: repeat(auto-fit, minmax(160px,auto));
+    }
+}
+@media (max-width: 472px){
+    .newsletter form .email{
+        width: auto;
+    }
+
+    .container{
+        width: 100%;
+        min-height: 500px;
+    }
+
+    .movies-container{
+        grid-template-columns: repeat(auto-fit, minmax(140px, auto));
+    }
+}

@@ -1,0 +1,58 @@
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    min-height: calc(100vh - 40px);
+    flex-direction: column;
+}
+
+.heading {
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--main-color);
+    margin-bottom: 20px; 
+}
+.centered form {
+    margin-top: 20px;
+}
+
+.centered form > * {
+    margin-bottom: 15px;
+}
+
+.centered form > *:last-child {
+    margin-bottom: 0;
+}
+
+.centered form input[type="text"],
+.centered form input[type="email"],
+.centered form textarea,
+.centered form input[type="file"],
+.centered form input[type="time"], 
+.centered form input[type="date"],
+.centered form input[type="number"],
+.centered form select {
+    border: 2px solid red; 
+    border-radius: 10px; 
+    padding: 5px; 
+    box-sizing: border-box; 
+    margin-bottom: 10px;
+}
+
+.centered form input[type="text"]:focus,
+.centered form input[type="email"]:focus,
+.centered form textarea:focus,
+.centered form input[type="file"]:focus, 
+.centered form input[type="time"]:focus, 
+.centered form input[type="date"]:focus, 
+.centered form input[type="number"]:focus,
+.centered form select:focus {
+    outline: none; 
+    border-color: blue; 
+}

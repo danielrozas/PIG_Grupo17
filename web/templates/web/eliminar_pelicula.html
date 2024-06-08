@@ -1,4 +1,4 @@
-{% extends "web/base.html" %}
+{% extends "web/base_admin.html" %}
 {% load static %}
 
 {% block titulo %}Eliminar Pelicula{% endblock %}
@@ -13,6 +13,6 @@
     <form method="post">
         {% csrf_token %}
         <button type="submit">Eliminar</button>
-        <a href="{% url 'lista_peliculas' %}">Cancelar</a>
+        <a href="{% url 'lista_peliculas_admin' %}">Cancelar</a>
     </form>
 {% endblock %}

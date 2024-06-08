@@ -1,4 +1,4 @@
-<!-- web/templates/web/base.html -->
+<!-- web/templates/web/base_admin.html -->
 
 {% load static %}
 
@@ -25,9 +25,9 @@
 
         <!-- menu  -->
         <ul class="navbar">
-            <li><a href="{% url 'index' %}#home" class="home-active">Inicio</a></li>
-            <li><a href="{% url 'index' %}#movies">Peliculas</a></li>
-            <li><a href="{% url 'index' %}#coming">Estrenos</a></li>
+            <li><a href="{% url 'index_admin' %}" class="home-active">Inicio</a></li>
+            <li><a href="{% url 'lista_peliculas_admin' %}">Lista de Peliculas</a></li>
+            <li><a href="{% url 'agregar_pelicula' %}">Agregar Película</a></li>
         </ul>
         <a href="#" class="btn">Login</a>
     </header>
@@ -35,19 +35,6 @@
     <!-- Contenido de la página -->
     {% block content %}{% endblock %}
 	</main>
-    <!-- footer  -->
-	<div class="footer-container">
-		<section class="footer">
-			<a href="" class="logo">
-			  <img src="{% static 'web/img/logo-Cinemania.png' %}" alt="Logo CineMania" class="logo-img">CineMania
-			</a>
-			<div class="social">
-				<a href=""><i class='bx bxl-facebook'></i></a>
-				<a href=""><i class='bx bxl-twitter'></i></a>
-				<a href=""><i class='bx bxl-instagram'></i></a>
-			</div>
-		</section>
-	</div>
 
     <!-- Copyright  -->
     <div class="copyright">

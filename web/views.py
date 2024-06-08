@@ -38,3 +38,6 @@ def eliminar_pelicula(request, pelicula_id):
 def lista_peliculas_admin(request):
     peliculas = Peliculas.objects.all()
     return render(request, 'web/lista_peliculas.html', {'peliculas': peliculas})
+    
+def index_admin(request):
+    return render(request, 'web/index_admin.html')
