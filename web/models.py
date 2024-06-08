@@ -15,36 +15,36 @@ class Clientes(models.Model):
         return self.NombreCliente
 
 class Directores(models.Model):
-    NombreDirector = models.CharField(max_length=60, verbose_name="NombreDirector")
+    NombreDirector = models.CharField(max_length=60, verbose_name="Director")
 
     def __str__(self):
         return self.NombreDirector
 
 class Generos(models.Model):
-    DescripcionGenero = models.CharField(max_length=60, verbose_name="DescripcionGenero")
+    DescripcionGenero = models.CharField(max_length=60, verbose_name="Género")
 
     def __str__(self):
         return self.DescripcionGenero
 
 class Peliculas(models.Model):
-    TituloPelicula = models.CharField(max_length=128, verbose_name="TituloPelicula") 
-    Director_id = models.ForeignKey(Directores, on_delete=models.CASCADE)
-    Genero_id = models.ForeignKey(Generos, on_delete=models.CASCADE)
-    AnioLanzamiento = models.IntegerField(verbose_name="AnioLanzamiento",
+    TituloPelicula = models.CharField(max_length=128, verbose_name="Título") 
+    Director = models.ForeignKey(Directores, on_delete=models.CASCADE)
+    Genero = models.ForeignKey(Generos, on_delete=models.CASCADE)
+    AnioLanzamiento = models.IntegerField(verbose_name="Año de Lanzamiento",
                 validators=[MinValueValidator(1900),
                             MaxValueValidator(2100)])
-    Duracion = models.IntegerField(verbose_name="Duracion",
+    Duracion = models.IntegerField(verbose_name="Duración",
                 validators=[MinValueValidator(0),
                             MaxValueValidator(300)])
-    PrecioAlquiler = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="PrecioAlquiler")
+    PrecioAlquiler = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Precio Alquiler")
     Disponibilidad = models.BooleanField(verbose_name="Disponibilidad")
-    URLCartel = models.ImageField(upload_to='carteles/', verbose_name="URLCartel")
+    URLCartel = models.ImageField(upload_to='carteles/', verbose_name="Poster")
 
 class Alquiler(models.Model):
     Pelicula_id = models.ForeignKey(Peliculas, on_delete=models.CASCADE)
     Cliente_id = models.ForeignKey(Clientes, on_delete=models.CASCADE)  
-    FechaInicio = models.DateField(verbose_name="FechaInicio")
-    FechaFin = models.DateField(verbose_name="FechaFin")
-    PrecioTotal = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="PrecioTotal")
+    FechaInicio = models.DateField(verbose_name="Fecha de Inicio")
+    FechaFin = models.DateField(verbose_name="Fecha de Finalización")
+    PrecioTotal = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Precio Total")
     Estado = models.BooleanField(verbose_name="Estado")
 

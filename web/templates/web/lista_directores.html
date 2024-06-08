@@ -1,0 +1,24 @@
+{% extends "web/base_admin.html" %}
+{% load static %}
+
+{% block titulo %}Lista de Directores{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/agregar_pelicula.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="centered">
+		<h1>Lista de Directores</h1>
+		{% if directores %}
+			<ul>
+				{% for director in directores %}
+					<li>{{ director.NombreDirector }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No hay directores disponibles.</p>
+		{% endif %}
+		<a href="{% url 'agregar_director' %}">Agregar Director</a>
+	</div>
+{% endblock %}

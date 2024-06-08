@@ -25,11 +25,20 @@
 
         <!-- menu  -->
         <ul class="navbar">
-            <li><a href="{% url 'index_admin' %}" class="home-active">Inicio</a></li>
+            <li><a href="{% url 'admin' %}" class="home-active">Inicio</a></li>
             <li><a href="{% url 'lista_peliculas_admin' %}">Lista de Peliculas</a></li>
+			<li><a href="{% url 'lista_directores' %}">Lista de Directores</a></li>
+			<li><a href="{% url 'lista_generos' %}">Lista de Géneros</a></li>
             <li><a href="{% url 'agregar_pelicula' %}">Agregar Película</a></li>
         </ul>
         <a href="#" class="btn">Login</a>
+		{% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{message.tags}}" {%endif%}> {{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </header>
 	<main>
     <!-- Contenido de la página -->

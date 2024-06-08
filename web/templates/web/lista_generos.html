@@ -1,0 +1,24 @@
+{% extends "web/base_admin.html" %}
+{% load static %}
+
+{% block titulo %}Lista de Géneros{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/agregar_pelicula.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="centered">
+		<h1>Lista de Géneros</h1>
+		{% if generos %}
+			<ul>
+				{% for genero in generos %}
+					<li>{{ genero.DescripcionGenero }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No hay géneros disponibles.</p>
+		{% endif %}
+		<a href="{% url 'agregar_genero' %}">Agregar Género</a>
+	</div>
+{% endblock %}
