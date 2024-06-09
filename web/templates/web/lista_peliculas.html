@@ -22,6 +22,7 @@
 						<span>{{ pelicula.Duracion }} min | {{ pelicula.Genero_id.DescripcionGenero }}</span>
 						<p>{{ pelicula.Disponibilidad|yesno:"disponible,no disponible" }}</p>
 						<a href="{% url 'eliminar_pelicula' pelicula.id %}" class="btn">Eliminar</a>
+						<a href="{% url 'modificar_pelicula' pelicula.id %}" class="btn">Modificar</a>
 					</div>
 				{% endfor %}
 			{% else %}

@@ -15,16 +15,29 @@ def listar_peliculas(request):
     
 def agregar_pelicula(request):
     if request.method == 'POST':
-        form = PeliculaForm(request.POST)
+        form = PeliculaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'La película se agregó con éxito')
-            return redirect('lista_peliculas')
+            return redirect('lista_peliculas_admin')
+        else:
+            print("Errores en el formulario:", form.errors)
     else:
         form = PeliculaForm()
     
     return render(request, 'web/agregar_pelicula.html', {'form': form})
     
+def modificar_pelicula(request, pelicula_id):
+    pelicula = get_object_or_404(Peliculas, id=pelicula_id)
+    if request.method == 'POST':
+        form = PeliculaForm(request.POST, instance=pelicula)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'La película se modificó con éxito')
+            return redirect('lista_peliculas_admin')
+    else:
+        form = PeliculaForm(instance=pelicula)
+    return render(request, 'web/modificar_pelicula.html', {'form': form, 'pelicula': pelicula})
 
 def eliminar_pelicula(request, pelicula_id):
     try:
@@ -34,7 +47,7 @@ def eliminar_pelicula(request, pelicula_id):
     if request.method == 'POST':
         pelicula.delete()
         messages.success(request, 'La película se eliminó exitosamente.')
-        return redirect('lista_peliculas')
+        return redirect('lista_peliculas_admin')
     return render(request, 'web/eliminar_pelicula.html', {'pelicula': pelicula})
 
 class PeliculasListView(ListView):

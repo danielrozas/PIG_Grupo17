@@ -1,0 +1,17 @@
+{% extends "web/base_admin.html" %}
+{% load static %}
+
+{% block title %}Modificar Película{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/modificar_pelicula.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Modificar Película: {{ pelicula.TituloPelicula }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar cambios</button>
+    </form>
+{% endblock %}

@@ -11,39 +11,8 @@
 	<div class="centered">
 		<h1 class="heading">Agregar Película</h1>
 		<form method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		<div class="form-group">
-			<label for="id_TituloPelicula">Título:</label>
-			{{ form.TituloPelicula }}
-		</div>
-		<div class="form-group">
-			<label for="id_Director">Director:</label>
-			{{ form.Director }}
-		</div>
-		<div class="form-group">
-			<label for="id_Genero">Género:</label>
-			{{ form.Genero }}
-		</div>
-		<div class="form-group">
-			<label for="id_AnioLanzamiento">Año de Lanzamiento:</label>
-			{{ form.AnioLanzamiento }}
-		</div>
-		<div class="form-group">
-			<label for="id_Duracion">Duración:</label>
-			{{ form.Duracion }}
-		</div>
-		<div class="form-group">
-			<label for="id_PrecioAlquiler">Precio Alquiler:</label>
-			{{ form.PrecioAlquiler }}
-		</div>
-		<div class="form-group">
-			<label for="id_Disponibilidad">Disponibilidad:</label>
-			{{ form.Disponibilidad }}
-		</div>
-		<div class="form-group">
-			<label for="id_URLCartel">Poster:</label>
-			{{ form.URLCartel }}
-		</div>
+			{% csrf_token %}
+			{{ form.as_p }}
 		<button type="submit" class="btn">Agregar</button>
 	</form>
 	</div>
