@@ -4,7 +4,6 @@
     align-items: center;
     padding-top: 20px; 
     padding-bottom: 20px;
-    min-height: calc(100vh - 40px);
     flex-direction: column;
 }
 

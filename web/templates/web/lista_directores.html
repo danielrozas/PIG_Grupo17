@@ -4,21 +4,25 @@
 {% block titulo %}Lista de Directores{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'web/css/agregar_pelicula.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/lista_directores.css' %}">
 {% endblock %}
 
 {% block content %}
-	<div class="centered">
-		<h1>Lista de Directores</h1>
+	<div>
+		<h1 class="heading">Lista de Directores</h1>
+		<div class="centered">
 		{% if directores %}
-			<ul>
+			<ul class="lista-container">
 				{% for director in directores %}
-					<li>{{ director.NombreDirector }}</li>
+					<li class="elemento">{{ director.NombreDirector }}</li>
 				{% endfor %}
 			</ul>
 		{% else %}
 			<p>No hay directores disponibles.</p>
 		{% endif %}
-		<a href="{% url 'agregar_director' %}">Agregar Director</a>
+		<div class="button-container">
+			<a href="{% url 'agregar_director' %}" class="btn">Agregar Director</a>
+		</div>
+		</div>
 	</div>
 {% endblock %}

@@ -99,6 +99,24 @@ section {
     font-size: 14px;
 }
 
+.box p {
+    margin-bottom: 1rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Disponibilidad */
+.disponible {
+    color: green;
+}
+
+.no-disponible {
+    color: red;
+}
+
 /* coming container  */
 .coming-container {
     display: grid;

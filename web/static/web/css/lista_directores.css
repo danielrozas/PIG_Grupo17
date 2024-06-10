@@ -1,0 +1,41 @@
+.lista-container {
+    list-style: none;
+	margin-top: 30px;
+}
+
+.elemento {
+    margin-bottom: 10px;
+}
+
+.elemento::before {
+    content: "\25CF";
+    margin-right: 10px;
+	color: #FF2C1F;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    flex-direction: column;
+}
+
+.heading {
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--main-color);
+    margin-bottom: 20px; 
+}
+
+.button-container {
+    display: flex;
+    gap: 0.5rem;
+	justify-content: center;
+	margin: 30px;
+}

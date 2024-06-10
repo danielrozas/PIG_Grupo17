@@ -8,12 +8,14 @@
 {% endblock %}
 
 {% block content %}
-	<div class="centered">
+	<div>
 		<h1 class="heading">Agregar Película</h1>
-		<form method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-			{{ form.as_p }}
-		<button type="submit" class="btn">Agregar</button>
-	</form>
+		<div class="centered">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+			<button type="submit" class="btn">Agregar</button>
+			</form>
+		</div>
 	</div>
 {% endblock %}

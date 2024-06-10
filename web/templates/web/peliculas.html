@@ -5,12 +5,12 @@
 {% block title %}Películas{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'web/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/lista_peliculas.css' %}">
 {% endblock %}
 
 {% block content %}
 	<div class="movies" id="movies">
-		<h1>Películas</h1>
+		<h1 class="heading">Películas</h1>
 		<div class="movies-container">
 			{% if peliculas %}
 				{% for pelicula in peliculas %}
@@ -19,8 +19,14 @@
 							<img src="{{ pelicula.URLCartel.url }}" alt="{{ pelicula.TituloPelicula }}">
 						</div>
 						<h3>{{ pelicula.TituloPelicula }}</h3>
-						<span>{{ pelicula.Duracion }} min | {{ pelicula.Genero_id.DescripcionGenero }}</span>
-						<p>{{ pelicula.Disponibilidad|yesno:"disponible,no disponible" }}</p>
+						<span>{{ pelicula.Duracion }} min | {{ pelicula.Genero.DescripcionGenero }}</span>
+						<span>Dirigida por {{ pelicula.Director }}</span>
+						<p class="{% if pelicula.Disponibilidad %}disponible{% else %}no-disponible{% endif %}">
+							{{ pelicula.Disponibilidad|yesno:"Disponible,No Disponible" }}
+						</p>
+						<div class="button-container">
+							<a href="" class="btn">Alquilar</a>
+						</div>
 					</div>
 				{% endfor %}
 			{% else %}

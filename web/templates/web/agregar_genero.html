@@ -8,12 +8,13 @@
 {% endblock %}
 
 {% block content %}
-	<div class="centered">
+	
 		<h1 class="heading">Agregar Género</h1>
-		<form method="post">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<button type="submit" class="btn">Agregar</button>
-		</form>
-	</div>
+		<div class="centered">
+			<form method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit" class="btn">Agregar</button>
+			</form>
+		</div>
 {% endblock %}
