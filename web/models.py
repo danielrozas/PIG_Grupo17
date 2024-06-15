@@ -1,18 +1,29 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from PIG_Grupo17 import settings
 
 # Create your models here.
 
 class Clientes(models.Model):
-    NombreCliente = models.CharField(max_length=60, verbose_name="NombreCliente")
-    Email =models.EmailField(max_length=45, verbose_name="Email")
+    """
+        https://stackoverflow.com/questions/71423191/django-user-model-with-same-fields
+
+        para ver el objeto models.User
+        https://docs.djangoproject.com/en/5.0/ref/contrib/auth/
+    """
+    user = models.OneToOneField(
+          settings.AUTH_USER_MODEL,
+          on_delete=models.CASCADE,
+          null=True,
+          blank=True
+     )
     Direccion =  models.CharField(max_length=45, verbose_name="Direccion")
 
     # Este metodo provee una representaacion leible por una persona
     # de la instancia del modelo. Es particularmente util cuando se trabaja 
     # con la interface admin de Django
     def __str__(self):
-        return self.NombreCliente
+        return f"{self.user.first_name} {self.user.last_name} | Email: {self.user.email} | Dirección: {self.Direccion}"
 
 class Directores(models.Model):
     NombreDirector = models.CharField(max_length=60, verbose_name="Director")
@@ -40,6 +51,8 @@ class Peliculas(models.Model):
     Disponibilidad = models.BooleanField(verbose_name="Disponibilidad")
     URLCartel = models.ImageField(upload_to='carteles/', verbose_name="Poster")
 
+    def __str__(self):
+        return f"{self.TituloPelicula} | Año de Lanzamiento {self.AnioLanzamiento} | Duración: {self.Duracion} minutos"    
 class Alquiler(models.Model):
     Pelicula_id = models.ForeignKey(Peliculas, on_delete=models.CASCADE)
     Cliente_id = models.ForeignKey(Clientes, on_delete=models.CASCADE)  

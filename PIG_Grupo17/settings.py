@@ -81,7 +81,7 @@ DATABASES = {
     "ENGINE": "django.db.backends.postgresql",
     "NAME": "pig_grupo17",
     "USER": "postgres",
-    "PASSWORD": "4257",
+    "PASSWORD": "accos50",
     "HOST": "127.0.0.1",
     "PORT": "5432",
  }
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'UTC'
 
@@ -128,3 +128,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'auth.User'
