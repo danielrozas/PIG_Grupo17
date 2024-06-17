@@ -25,7 +25,7 @@
 							{{ pelicula.Disponibilidad|yesno:"Disponible,No Disponible" }}
 						</p>
 						<div class="button-container">
-							<a href="" class="btn">Alquilar</a>
+							<a href="{% url 'eliminar_pelicula' pelicula.id %}" class="btn">Alquilar</a>
 						</div>
 					</div>
 				{% endfor %}
