@@ -5,9 +5,19 @@ from .models import Peliculas, Directores, Generos
 from .forms import PeliculaForm, DirectorForm, GeneroForm
 from django.views.generic.list import ListView
 
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+
 # Create your views here.
 def index(request):
     return render(request, 'web/index.html')
+
+def user_logout(request):
+    logout(request)
+
+    messages.success(request, 'Sesion Cerrada')
+
+    return redirect('index')
 
 def listar_peliculas(request):
     peliculas = Peliculas.objects.all()

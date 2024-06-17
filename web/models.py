@@ -52,7 +52,8 @@ class Peliculas(models.Model):
     URLCartel = models.ImageField(upload_to='carteles/', verbose_name="Poster")
 
     def __str__(self):
-        return f"{self.TituloPelicula} | Año de Lanzamiento {self.AnioLanzamiento} | Duración: {self.Duracion} minutos"    
+        return f"{self.TituloPelicula} | Año de Lanzamiento {self.AnioLanzamiento} | Duración: {self.Duracion} minutos"
+        
 class Alquiler(models.Model):
     Pelicula_id = models.ForeignKey(Peliculas, on_delete=models.CASCADE)
     Cliente_id = models.ForeignKey(Clientes, on_delete=models.CASCADE)  
