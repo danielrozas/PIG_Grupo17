@@ -1,5 +1,5 @@
 from django import forms
-from .models import Peliculas, Directores, Generos
+from .models import Peliculas, Directores, Generos, Clientes
 from django.core.exceptions import ValidationError
 import datetime
 
