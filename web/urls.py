@@ -12,7 +12,8 @@ urlpatterns = [
     #path("accounts/logout/", auth_views.LogoutView.as_view(template_name="web/registration/logout.html"), name="logout"),
     path("accounts/logout/", views.user_logout, name="logout"),
     path("accounts/password_reset/", auth_views.PasswordResetView.as_view(template_name="web/registration/password_reset.html"), name="password_reset"),
-        
+    path('accounts/signup/', views.user_signup, name='signup'),
+    
     path('peliculas/', views.listar_peliculas, name='listar_peliculas'),
     
     path('admin/', views.index_admin, name='admin'),

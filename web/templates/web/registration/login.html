@@ -1,39 +1,40 @@
-<! -- Se parte del ejemplo tomado de la página https://docs.djangoproject.com/en/5.0/topics/auth/default/ --> 
+<!-- Se parte del ejemplo tomado de la página https://docs.djangoproject.com/en/5.0/topics/auth/default/ --> 
 
 {% extends "web/base.html" %}
 {% block content %}
-
-{% if form.errors %}
-<p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
-{% endif %}
-
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Su cuenta no tiene acceso a esta página. Para proceder,
-        inicie sesión con una cuenta que tenga acceso.</p>
-    {% else %}
-    <p>Por favor inicie sesión para ver esta página.</p>
+    <h1>Iniciar Sesión</h1>
+    {% if form.errors %}
+        <p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
     {% endif %}
-{% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Su cuenta no tiene acceso a esta página. Para proceder,
+                inicie sesión con una cuenta que tenga acceso.</p>
+        {% else %}
+            <p>Por favor inicie sesión para ver esta página.</p>
+        {% endif %}
+    {% endif %}
 
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
-</form>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+        </table>
 
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+        <input type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+        <a href="{% url 'signup' %}">Crear cuenta</a>
+    </form>
+
+    {# Assumes you set up the password_reset view in your URLconf #}
+    <p><a href="{% url 'password_reset' %}">¿Se olvidó la contraseña?</a></p>
 
 {% endblock %}
