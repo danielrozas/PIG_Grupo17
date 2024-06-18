@@ -9,11 +9,11 @@
 
 {% block content %}
     <h1 class="heading">Modificar Película: {{ pelicula.TituloPelicula }}</h1>
-		<div class="centered">
+	<div class="centered">
 		<form method="post" enctype="multipart/form-data">
 			{% csrf_token %}
 			{{ form.as_p }}
 			<button type="submit" class="btn">Guardar cambios</button>
 		</form>
-	<div/>
+	</div>
 {% endblock %}

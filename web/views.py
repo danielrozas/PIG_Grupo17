@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponse
 from django.contrib import messages
-from .models import Peliculas, Directores, Generos, Clientes
-from .forms import PeliculaForm, DirectorForm, GeneroForm, SignupForm
+from .models import Peliculas, Directores, Generos, Clientes, Alquiler
+from .forms import PeliculaForm, DirectorForm, GeneroForm, SignupForm, AlquilerForm
 from django.views.generic.list import ListView
-
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from django.contrib.auth import logout, login
 
 # Create your views here.
@@ -33,6 +34,7 @@ def user_logout(request):
     return redirect('index')
 
 def listar_peliculas(request):
+    actualizar_estados()
     peliculas = Peliculas.objects.all()
     return render(request, 'web/peliculas.html', {'peliculas': peliculas})
     
@@ -113,3 +115,43 @@ def lista_directores(request):
 def lista_generos(request):
     generos = Generos.objects.all()
     return render(request, 'web/lista_generos.html', {'generos': generos})
+
+@login_required
+def alquilar_pelicula(request, pelicula_id):
+    pelicula = get_object_or_404(Peliculas, id=pelicula_id)
+    cliente = get_object_or_404(Clientes, user=request.user)
+    
+    if request.method == 'POST':
+        form = AlquilerForm(request.POST)
+        if form.is_valid() and pelicula.Disponibilidad:
+            alquiler = form.save(commit=False)
+            alquiler.Cliente_id = cliente
+            alquiler.Pelicula_id = pelicula
+            alquiler.FechaInicio = timezone.now().date()
+            alquiler.Estado = True
+            alquiler.PrecioTotal = (alquiler.FechaFin - alquiler.FechaInicio).days * pelicula.PrecioAlquiler
+            alquiler.save()
+            messages.success(request, 'Su película se alquiló con éxito')
+            pelicula.CantidadDisponible -= 1
+            if pelicula.CantidadDisponible == 0:
+                pelicula.Disponibilidad = False
+            pelicula.save()
+            return redirect('lista_peliculas_alquiladas')
+    else:
+        form = AlquilerForm()
+    
+    return render(request, 'web/alquilar_pelicula.html', {'form': form, 'pelicula': pelicula})
+
+def actualizar_estados():
+    alquileres_activos = Alquiler.objects.filter(Estado=True)
+    for alquiler in alquileres_activos:
+        if alquiler.FechaFin < timezone.now().date():
+            alquiler.Estado = False
+            alquiler.Pelicula_id.Disponibilidad = True
+            alquiler.Pelicula_id.save()
+            alquiler.save()
+
+@login_required
+def lista_peliculas_alquiladas(request):
+    alquileres = Alquiler.objects.filter(Cliente_id=request.user.clientes)
+    return render(request, 'web/lista_peliculas_alquiladas.html', {'alquileres': alquileres})

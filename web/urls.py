@@ -15,7 +15,8 @@ urlpatterns = [
     path('accounts/signup/', views.user_signup, name='signup'),
     
     path('peliculas/', views.listar_peliculas, name='listar_peliculas'),
-    
+    path('alquilar/<int:pelicula_id>/', views.alquilar_pelicula, name='alquilar_pelicula'),
+    path('mis_peliculas/', views.lista_peliculas_alquiladas, name='lista_peliculas_alquiladas'),
     path('admin/', views.index_admin, name='admin'),
     path('admin/agregar_pelicula/', views.agregar_pelicula, name='agregar_pelicula'),
     path('admin/pelicula/<int:pelicula_id>/eliminar/', eliminar_pelicula, name='eliminar_pelicula'),

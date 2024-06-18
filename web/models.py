@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from PIG_Grupo17 import settings
-
+from django.utils import timezone
 # Create your models here.
 
 class Clientes(models.Model):
@@ -48,16 +48,17 @@ class Peliculas(models.Model):
                 validators=[MinValueValidator(0),
                             MaxValueValidator(300)])
     PrecioAlquiler = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Precio Alquiler")
-    Disponibilidad = models.BooleanField(verbose_name="Disponibilidad")
+    CantidadDisponible = models.IntegerField(default=1, verbose_name="Cantidad Disponible")
+    Disponibilidad = models.BooleanField(default=True, verbose_name="Disponibilidad")
     URLCartel = models.ImageField(upload_to='carteles/', verbose_name="Poster")
 
     def __str__(self):
         return f"{self.TituloPelicula} | Año de Lanzamiento {self.AnioLanzamiento} | Duración: {self.Duracion} minutos"
-        
+    
 class Alquiler(models.Model):
     Pelicula_id = models.ForeignKey(Peliculas, on_delete=models.CASCADE)
     Cliente_id = models.ForeignKey(Clientes, on_delete=models.CASCADE)  
-    FechaInicio = models.DateField(verbose_name="Fecha de Inicio")
+    FechaInicio = models.DateField(verbose_name="Fecha de Inicio", default=timezone.now)
     FechaFin = models.DateField(verbose_name="Fecha de Finalización")
     PrecioTotal = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Precio Total")
     Estado = models.BooleanField(verbose_name="Estado")

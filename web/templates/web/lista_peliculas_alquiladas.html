@@ -1,0 +1,25 @@
+{% extends "web/base.html" %}
+{% load static %}
+
+{% block titulo %}Agregar Pelicula{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/alquilar_pelicula.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div>
+		<h1>Mis Películas Alquiladas</h1>
+        <ul>
+            {% for alquiler in alquileres %}
+            <li>
+                {{ alquiler.Pelicula_id.TituloPelicula }} - Fecha de Inicio: {{ alquiler.FechaInicio }} - Fecha de Finalización: {{ alquiler.FechaFin }} - Precio Total: {{ alquiler.PrecioTotal }} - Estado del Alquiler:  {% if alquiler.Estado %}
+                Activo
+            {% else %}
+                Finalizado
+            {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+	</div>
+{% endblock %}

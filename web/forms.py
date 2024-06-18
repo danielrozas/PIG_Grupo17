@@ -1,11 +1,11 @@
 from django import forms
-from .models import Peliculas, Directores, Generos, Clientes
+from .models import Peliculas, Directores, Generos, Clientes, Alquiler
 from django.core.exceptions import ValidationError
 from django.forms.fields import EmailField  
 from django.forms.forms import Form
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from django.utils import timezone
 import datetime
 
 class PeliculaForm(forms.ModelForm):
@@ -57,6 +57,10 @@ class PeliculaForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         # agregar validaciones adicionales
+        cantidad_disponible = cleaned_data.get("CantidadDisponible")
+        
+        if cantidad_disponible is not None:
+            cleaned_data["Disponibilidad"] = cantidad_disponible > 0
         return cleaned_data
 
 class DirectorForm(forms.ModelForm):
@@ -119,3 +123,20 @@ class SignupForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class AlquilerForm(forms.ModelForm):
+    class Meta:
+        model = Alquiler
+        fields = ['FechaFin']
+        labels = {
+            'FechaFin': 'Fecha de Finalización',
+        }
+        widgets = {
+            'FechaFin': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'DD/MM/YYYY'}),
+        }
+
+    def clean_FechaFin(self):
+        fecha_fin = self.cleaned_data.get('FechaFin')
+        if fecha_fin < timezone.now().date():
+            raise forms.ValidationError("La fecha de finalización no puede ser en el pasado.")
+        return fecha_fin
