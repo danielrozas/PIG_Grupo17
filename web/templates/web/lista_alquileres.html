@@ -1,0 +1,44 @@
+{% extends "web/base_admin.html" %}
+{% load static %}
+
+{% block titulo %}Lista de Alquileres{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/lista_clientes.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1 class="heading">Lista de Alquileres</h1>
+        <div class="centered">
+            {% if alquileres %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Película</th>
+                            <th>Fecha de Inicio</th>
+                            <th>Fecha de Finalización</th>
+                            <th>Precio Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for alquiler in alquileres %}
+                            <tr>
+                                <td>{{ alquiler.Cliente_id.user.first_name }} {{ alquiler.Cliente_id.user.last_name }}</td>
+                                <td>{{ alquiler.Pelicula_id.TituloPelicula }}</td>
+                                <td>{{ alquiler.FechaInicio }}</td>
+                                <td>{{ alquiler.FechaFin }}</td>
+                                <td>{{ alquiler.PrecioTotal }}</td>
+                                <td>{{ alquiler.Estado|yesno:"Activo,Inactivo" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No hay alquileres registrados.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

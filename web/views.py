@@ -116,6 +116,10 @@ def lista_generos(request):
     generos = Generos.objects.all()
     return render(request, 'web/lista_generos.html', {'generos': generos})
 
+def lista_clientes(request):
+    clientes = Clientes.objects.all()
+    return render(request, 'web/lista_clientes.html', {'clientes': clientes})
+
 @login_required
 def alquilar_pelicula(request, pelicula_id):
     pelicula = get_object_or_404(Peliculas, id=pelicula_id)
@@ -155,3 +159,7 @@ def actualizar_estados():
 def lista_peliculas_alquiladas(request):
     alquileres = Alquiler.objects.filter(Cliente_id=request.user.clientes)
     return render(request, 'web/lista_peliculas_alquiladas.html', {'alquileres': alquileres})
+
+def listar_alquileres(request):
+    alquileres = Alquiler.objects.all().select_related('Cliente_id', 'Pelicula_id')
+    return render(request, 'web/lista_alquileres.html', {'alquileres': alquileres})

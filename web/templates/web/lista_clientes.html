@@ -1,0 +1,42 @@
+{% extends "web/base_admin.html" %}
+{% load static %}
+
+{% block titulo %}Lista de Clientes{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/lista_clientes.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div>
+		<h1 class="heading">Lista de Clientes</h1>
+		<div class="centered">
+            {% if clientes %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                        <tr>
+                            <td>{{ cliente.user.username }}</td>
+                            <td>{{ cliente.user.first_name }}</td>
+                            <td>{{ cliente.user.last_name }}</td>
+                            <td>{{ cliente.user.email }}</td>
+                            <td>{{ cliente.Direccion }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+			<p>No hay clientes cargados.</p>
+		{% endif %}
+		</div>
+	</div>
+{% endblock %}

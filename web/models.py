@@ -63,3 +63,5 @@ class Alquiler(models.Model):
     PrecioTotal = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Precio Total")
     Estado = models.BooleanField(verbose_name="Estado")
 
+    def __str__(self):
+        return f"Cliente: {self.Cliente_id} - Pelicula: {self.Pelicula_id}"

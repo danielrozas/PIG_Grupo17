@@ -87,6 +87,8 @@ class GeneroForm(forms.ModelForm):
 
 class SignupForm(UserCreationForm):
     username = forms.CharField(label='Nombre de Usuario', min_length=5, max_length=150)
+    first_name = forms.CharField(label='Nombre', max_length=30)
+    last_name = forms.CharField(label='Apellido', max_length=30)
     email = forms.EmailField(label='Email')
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repetir contraseña', widget=forms.PasswordInput)
@@ -94,7 +96,7 @@ class SignupForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'direccion']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'direccion']
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
