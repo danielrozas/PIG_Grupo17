@@ -4,22 +4,42 @@
 {% block titulo %}Agregar Pelicula{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'web/css/alquilar_pelicula.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/lista_clientes.css' %}">
 {% endblock %}
 
 {% block content %}
 	<div>
-		<h1>Mis Películas Alquiladas</h1>
-        <ul>
-            {% for alquiler in alquileres %}
-            <li>
-                {{ alquiler.Pelicula_id.TituloPelicula }} - Fecha de Inicio: {{ alquiler.FechaInicio }} - Fecha de Finalización: {{ alquiler.FechaFin }} - Precio Total: {{ alquiler.PrecioTotal }} - Estado del Alquiler:  {% if alquiler.Estado %}
-                Activo
+		<h1 class="heading">Mis Películas Alquiladas</h1>
+        <div class="centered">
+            {% if alquileres %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Película</th>
+                            <th>Fecha de Inicio</th>
+                            <th>Fecha de Finalización</th>
+                            <th>Precio Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for alquiler in alquileres %}
+                            <tr>
+                                <td>{{ alquiler.Pelicula_id.TituloPelicula }}</td>
+                                <td>{{ alquiler.FechaInicio }}</td>
+                                <td>{{ alquiler.FechaFin }}</td>
+                                <td>{{ alquiler.PrecioTotal }}</td>
+                                <td>{{ alquiler.Estado|yesno:"Activo,Finalizado" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             {% else %}
-                Finalizado
+                <p>No hay alquileres registrados.</p>
             {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
+        </div>
+        <div class="centered">
+            <a href="{% url 'listar_peliculas' %}" class="btn btn-primary">Alquilar más</a>
+        </div>
 	</div>
 {% endblock %}

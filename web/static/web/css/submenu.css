@@ -1,0 +1,28 @@
+ul li ul.dropdown li{
+    display: block;
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+ul.navbar li ul.dropdown li a {
+    display: block; 
+    width: 100%;
+    color: #fff;
+}
+
+ul li ul.dropdown{
+    width: auto;
+    position: absolute;
+    z-index: 999;
+    display: none;
+    background-color: #020307;
+    padding: 0;
+}
+
+ul li:hover ul.dropdown{
+    display: block;
+}
+
+ul.navbar li ul.dropdown li:hover {
+    background-color: #fa1216;
+}

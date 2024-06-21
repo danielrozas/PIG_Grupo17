@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 20px; 
+    padding-top: 5px; 
     padding-bottom: 20px;
     flex-direction: column;
 }
@@ -13,7 +13,6 @@
     margin-right: auto;
     font-size: 1.2rem;
     font-weight: 500;
-    text-transform: uppercase;
     border-bottom: 1px solid var(--main-color);
     margin-bottom: 20px; 
 }
@@ -22,7 +21,7 @@
 }
 
 .centered form > * {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .centered form > *:last-child {
@@ -31,6 +30,7 @@
 
 .centered form input[type="text"],
 .centered form input[type="email"],
+.centered form input[type="password"],
 .centered form textarea,
 .centered form input[type="file"],
 .centered form input[type="time"], 
@@ -46,6 +46,7 @@
 
 .centered form input[type="text"]:focus,
 .centered form input[type="email"]:focus,
+.centered form input[type="password"]:focus,
 .centered form textarea:focus,
 .centered form input[type="file"]:focus, 
 .centered form input[type="time"]:focus, 
@@ -55,3 +56,4 @@
     outline: none; 
     border-color: blue; 
 }
+

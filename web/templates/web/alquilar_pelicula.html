@@ -4,18 +4,18 @@
 {% block titulo %}Agregar Pelicula{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'web/css/alquilar_pelicula.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/agregar_pelicula.css' %}">
 {% endblock %}
 
 {% block content %}
-	<div>
+    <h1 class="heading">Estás por alquilar: {{ pelicula.TituloPelicula | upper }}</h1>
+	<div class="centered">
         {% if pelicula.Disponibilidad %}
-            <h1>Alquilar {{ pelicula.TituloPelicula }}</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Alquilar</button>
-            </form>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn">Alquilar</button>
+                </form>
         {% else %}
 			<h1>No es posible alquilar esta película. No está disponible.</h1>
 		{% endif %}

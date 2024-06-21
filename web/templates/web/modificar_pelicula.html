@@ -1,4 +1,4 @@
-{% extends "web/base_admin.html" %}
+{% extends "web/base.html" %}
 {% load static %}
 
 {% block title %}Modificar Película{% endblock %}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="heading">Modificar Película: {{ pelicula.TituloPelicula }}</h1>
+    <h1 class="heading">Modificar Película: {{ pelicula.TituloPelicula | upper}}</h1>
 	<div class="centered">
 		<form method="post" enctype="multipart/form-data">
 			{% csrf_token %}

@@ -1,9 +1,24 @@
 <!-- Se parte del ejemplo tomado de la página https://docs.djangoproject.com/en/5.0/topics/auth/default/ --> 
 
 {% extends "web/base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'web/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/agregar_pelicula.css' %}">
+{% endblock %}
+{% block navbar %}
+<!-- No navbar -->
+{% endblock %}
+
 {% block content %}
-    <h1>Iniciar Sesión</h1>
-    {% if form.errors %}
+    <a href="{% url 'index' %}" class="logo centered">
+        <img src="{% static 'web/img/logo-Cinemania.png' %}" alt="Logo CineMania" class="logo-img">CineMania
+    </a>
+    <h1 class="heading">Iniciar Sesión</h1>
+    <div class="centered">
+        {% if form.errors %}
         <p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
     {% endif %}
 
@@ -28,13 +43,20 @@
             <td>{{ form.password }}</td>
         </tr>
         </table>
-
-        <input type="submit" value="login">
-        <input type="hidden" name="next" value="{{ next }}">
-        <a href="{% url 'signup' %}">Crear cuenta</a>
+        <div class="acceso">
+            <input type="submit" class="btn" value="login">
+            <input type="hidden" name="next" value="{{ next }}">
+            <a href="{% url 'signup' %}">Crear cuenta</a>
+        </div>  
     </form>
 
     {# Assumes you set up the password_reset view in your URLconf #}
     <p><a href="{% url 'password_reset' %}">¿Se olvidó la contraseña?</a></p>
+    </div>
+    
 
+{% endblock %}
+
+{% block footer %}
+<!-- No footer -->
 {% endblock %}

@@ -25,7 +25,19 @@
 							{{ pelicula.Disponibilidad|yesno:"Disponible,No Disponible" }}
 						</p>
 						<div class="button-container">
-							<a href="{% url 'alquilar_pelicula' pelicula.id %}" class="btn">Alquilar</a>
+							{% if user.is_authenticated %}
+								{% if user.is_staff %}
+									<!-- administradores -->
+									<a href="{% url 'modificar_pelicula' pelicula.id %}" class="btn">Modificar</a>
+									<a href="{% url 'eliminar_pelicula' pelicula.id %}" class="btn">Eliminar</a>
+								{% else %}
+									<!-- clientes autenticados -->
+									<a href="{% url 'alquilar_pelicula' pelicula.id %}" class="btn">Alquilar</a>
+								{% endif %}
+							{% else %}
+								<!-- usuarios no autenticados -->
+								<a href="{% url 'alquilar_pelicula' pelicula.id %}" class="btn">Alquilar</a>
+							{% endif %}
 						</div>
 					</div>
 				{% endfor %}
