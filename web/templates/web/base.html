@@ -22,6 +22,9 @@
     <header>
         <a href="{% url 'index' %}" class="logo">
             <img src="{% static 'web/img/logo-Cinemania.png' %}" alt="Logo CineMania" class="logo-img">CineMania
+            {% if user.is_authenticated %}
+                <span>({{ user.username }})</span>
+            {% endif %}
         </a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
@@ -50,8 +53,8 @@
             
         </ul>
         <div class="actions">
-            {% if not user.is_authenticated %}<a class="login btn" href="{% url 'login' %}">Login</a> {%endif%}
-            {% if user.is_authenticated %}<a class="logout btn" href="{% url 'logout' %}">Logout</a> {%endif%}
+            {% if not user.is_authenticated %}<a class="login btn" href="{% url 'login' %}">Entrar</a> {%endif%}
+            {% if user.is_authenticated %}<a class="logout btn" href="{% url 'logout' %}">Salir</a> {%endif%}
         </div>
         {% if messages %}
             <ul class="messages">
